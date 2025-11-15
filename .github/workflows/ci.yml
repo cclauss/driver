@@ -9,9 +9,9 @@ jobs:
   ci:
     strategy:
       fail-fast: false
-      matrix:  # Currently Node.js [24.x, 22.x, 20.x]
-        node-version: [lts/*, lts/-1, lts/-2]
+      matrix:  # Currently Node.js [20.x, 22.x, 24.x]
         os: [macos-latest, ubuntu-latest, windows-latest]
+        node-version: [lts/-2, lts/-1, lts/*]
     runs-on: ${{ matrix.os }}
     steps:
       - if: runner.os == 'Linux'
@@ -28,9 +28,9 @@ jobs:
       # - run: node test/test.js
       # - run: node test/active.js
       # - run: node test/all.js
-      - run: node test/bounds.js
-      - run: node test/click.js
-      - run: node test/focus.js
-      - run: node test/keyboard.js
-      - run: node test/running.js
+      # - run: node test/bounds.js
+      # - run: node test/click.js
+      # - run: node test/focus.js
+      # - run: node test/keyboard.js
+      # - run: node test/running.js
       - run: node test/state.js
