@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           # cache: 'yarn'
+      - run: npm install node-addon-api@latest
       - run: yarn
       # - run: yarn test
       # - run: node test/test.js
