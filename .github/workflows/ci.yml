@@ -12,6 +12,9 @@ jobs:
       matrix:  # Currently Node.js [20.x, 22.x, 24.x]
         os: [macos-latest, ubuntu-latest, windows-latest]
         node-version: [lts/-2, lts/-1, lts/*]
+        exclude:
+          - os: ubuntu-latest
+            node-version: lts/*
     runs-on: ${{ matrix.os }}
     steps:
       - if: runner.os == 'Linux'
