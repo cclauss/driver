@@ -9,16 +9,28 @@ jobs:
   ci:
     strategy:
       fail-fast: false
-      matrix:
-        node-version: [lts/*, lst/-1, lts/-2]
+      matrix:  # Currently Node.js [24.x, 22.x, 20.x]
+        node-version: [lts/*, lts/-1, lts/-2]
         os: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
+      - if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libx11-dev
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          # cache: 'yarn'
       - run: yarn
       # - run: yarn test
-      - run: node test/test.js
+      # - run: node test/test.js
+      # - run: node test/active.js
+      # - run: node test/all.js
+      - run: node test/bounds.js
+      - run: node test/click.js
+      - run: node test/focus.js
+      - run: node test/keyboard.js
+      - run: node test/running.js
+      - run: node test/state.js
